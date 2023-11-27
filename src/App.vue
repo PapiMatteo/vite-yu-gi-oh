@@ -17,8 +17,9 @@ export default {
       axios
         .get(this.store.apiUrl)
         .then((resp) => {
-          this.store.cardsList = resp.data
-        })
+          this.store.cardsList = resp.data;
+          this.store.loading = false;
+        });
     },
     components: { AppHeader, AppContent }
 }
@@ -28,7 +29,7 @@ export default {
 <template>
   <AppHeader/>
   <AppContent/>
-  
+
 </template>
 
 <style lang="scss">

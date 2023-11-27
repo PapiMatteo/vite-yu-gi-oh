@@ -1,6 +1,18 @@
 <script>
-export default {
+import { store } from '../store';
+import AppCard from './AppCard.vue';
+import AppLoader from './AppLoader.vue';
 
+export default {
+    data(){
+        return {
+            store
+        }
+    },
+    components: {
+        AppCard,
+        AppLoader,
+    }
 }
 </script>
 
@@ -8,9 +20,10 @@ export default {
     <div class="wrapper mt-5">
         <div class="container pt-5">
             <div class="content-top "></div>
-            <div class="row row-col-5">
-                <div class="col">
-                    
+            <AppLoader v-if="store.loading"/>
+            <div class="row row-cols-5 gy-3 align-items-stretch" v-else>
+                <div class="col" v-for="card in store.cardsList.data">
+                    <AppCard  :card="card"/>
                 </div>
             </div>
         </div>
