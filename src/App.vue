@@ -4,8 +4,6 @@ import AppHeader from './components/AppHeader.vue';
 import {store} from './store.js';
 import AppContent from "./components/AppContent.vue";
 
-
-
 export default {
     data() {
         return {
@@ -27,6 +25,7 @@ export default {
 </script>
 
 <template>
+  
   <AppHeader/>
   <AppContent/>
 
@@ -34,6 +33,5 @@ export default {
 
 <style lang="scss">
 @use './style/general.scss';
-
 
 </style>
