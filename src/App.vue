@@ -12,18 +12,7 @@ export default {
         };
     },
     created() {
-      this.store.loading = true;
-      axios
-        .get(this.store.apiUrl, {
-          params: {
-            num: 20,
-            offset: 0
-          }
-        })
-        .then((resp) => {
-          this.store.cardsList = resp.data;
-          this.store.loading = false;
-        });
+      this.getCards()
     },
     components: {
       AppHeader,
@@ -31,16 +20,34 @@ export default {
       AppFilter
     },
     methods: {
-      handleSearch() {
-        axios.get(this.store.apiUrl, {
+      getCards(){
+        this.store.loading = true;
+      axios
+        .get(this.store.apiUrl, {
           params: {
-            archetype: this.store.searchText,
-            num: 20,
+            num: 50,
             offset: 0
           }
-        }).then((resp) => {
-          this.store.cardsList = resp.data;
         })
+        .then((resp) => {
+          this.store.cardsList = resp.data;
+          this.store.loading = false;
+        });
+      },
+      handleSearch() {
+        if(this.store.searchText.length > 0){
+          axios.get(this.store.apiUrl, {
+            params: {
+            archetype: this.store.searchText,
+            num: 50,
+            offset: 0
+            }
+          }).then((resp) => {
+          this.store.cardsList = resp.data;
+          })
+        } else {
+          this.getCards()
+        }
       }
     }
 }

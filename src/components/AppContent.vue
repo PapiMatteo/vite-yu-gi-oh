@@ -2,6 +2,7 @@
 import { store } from '../store';
 import AppCard from './AppCard.vue';
 import AppLoader from './AppLoader.vue';
+import AppStats from './AppStats.vue';
 
 export default {
     data(){
@@ -12,7 +13,8 @@ export default {
     components: {
     AppCard,
     AppLoader,
-    }
+    AppStats
+}
 }
 </script>
 
@@ -20,6 +22,7 @@ export default {
     <div class="wrapper mt-5">
         <div class="container pt-5">
             <div class="content-top ">
+                <AppStats />
             </div>
             <AppLoader v-if="store.loading"/>
             <div class="row row-cols-5 g-4" v-else>
